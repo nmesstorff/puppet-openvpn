@@ -211,6 +211,7 @@ define openvpn::server (
   String $key_cn                                                    = '',
   String $key_name                                                  = '',
   String $key_ou                                                    = '',
+  Integer $crl_days                                                 = 30,
   String $verb                                                      = '',
   String $cipher                                                    = 'AES-256-CBC',
   String $tls_cipher                                                = 'TLS-DHE-RSA-WITH-AES-256-GCM-SHA384:TLS-DHE-RSA-WITH-AES-256-CBC-SHA256:TLS-DHE-RSA-WITH-AES-128-GCM-SHA256:TLS-DHE-RSA-WITH-AES-128-CBC-SHA256',
@@ -369,9 +370,11 @@ define openvpn::server (
         ssl_key_size   => $ssl_key_size,
         ca_expire      => $ca_expire,
         key_expire     => $key_expire,
+        crl_days       => $crl_days,
         key_cn         => $key_cn,
         key_name       => $key_name,
         key_ou         => $key_ou,
+        tls_auth       => $tls_auth,
         tls_static_key => $tls_auth or $tls_crypt,
       }
 
